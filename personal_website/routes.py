@@ -1,6 +1,4 @@
-from datetime import date
-
-from flask import render_template, url_for
+from flask import render_template
 from personal_website import app
 
 @app.route("/")
