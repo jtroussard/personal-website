@@ -1,0 +1,26 @@
+name: Deploy to GCP Compute Engine
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install gcloud
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        version: 'latest'
+
+    - name: SSH into Compute Engine
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key
+        chmod 600 ssh_key
+        gcloud compute ssh --zone=us-central1-a instance-3 --project=personal-website-3 --command="./deploy.sh" --ssh-key-file=ssh_key
+        gcloud compute ssh --zone=us-central1-a instance-3 --project=personal-website-3 --ssh-key-file=???
