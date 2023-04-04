@@ -1,5 +1,5 @@
 #!/bin/bash
-export APP_DIR=/home/$(whoami)/service/personal-website/
+source ./vars
 
 # Pull latest release from GitHub
 git fetch --tags
