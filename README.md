@@ -20,7 +20,7 @@ To deploy the website to a Google Cloud Compute Engine instance, follow these st
 1. Copy the contents of the repository to your Compute Engine instance using the gcloud compute scp command. For example:
 ```
 gcloud compute scp --recurse /path/to/local/repository/* \
-INSTANCE_NAME:/var/www/personal-website
+INSTANCE_NAME:/home/${whoami}/personal-website
 ```
 1. SSH into your Compute Engine instance using the gcloud compute ssh command. For example:
 ```
@@ -28,7 +28,7 @@ gcloud compute ssh INSTANCE_NAME
 ```
 1. Install the website dependencies by running the following commands:
 ```
-cd /var/www/personal-website
+cd /home/${whoami}/personal-website
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
