@@ -1,8 +1,13 @@
 #!/bin/bash
+export APP_DIR=/home/$(whoami)/service/personal-website/
 
 # Pull latest release from GitHub
 git fetch --tags
 git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+
+# Move project to prod folder
+cp ./* /home/$(whoami)/service/
+cd /home/$(whoami)/service/
 
 # Activate venv
 source venv/bin/activate
