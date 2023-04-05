@@ -12,12 +12,16 @@ echo "WORKER_COUNT is set to $WORKER_COUNT"
 rollback() {
     echo "Rolling back changes..."
 
+    # Remove virtual environment directory
+    deactivate
+    rm -rf venv
+
     # Remove Nginx config
     sudo rm /etc/nginx/sites-enabled/pw-nginx.conf
     sudo nginx -s reload
 
     # Remove Supervisor config
-    sudo rm /etc/supervisor/conf.d/pw-supervisor.conf
+    sudo rm /etc/supervisor/conf.d/*
     sudo supervisorctl reload
 
     # Remove app directory
@@ -32,7 +36,7 @@ trap 'rollback' ERR
 
 # Create app directory if it doesn't exist
 if [ ! -d $APP_DIR ]; then
-    sudo mkdir -p $APP_DIR
+	mkdir -p $APP_DIR
 fi
 
 # Pull latest release from GitHub
@@ -43,18 +47,23 @@ git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 cp -r ./* $APP_DIR
 cd $APP_DIR
 
-# Activate venv
+# Create a virtual environment
+python3 -m venv venv
 source $VENV_DIR/bin/activate
 
 # Install requirements
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt >/dev/null 2>&1
 
 # Configure Nginx
-sudo ln -sf $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
-sudo nginx -s reload
+sudo cp $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
+echo "NGINX started"
 
 # Configure Supervisor
-sudo ln -sf $APP_DIR/pw-supervisor.conf /etc/supervisor/conf.d/
+sudo cp $APP_DIR/pw-super.conf /etc/supervisor/conf.d/
+sudo touch /var/log/personal-website/pw.out.log
+sudo touch /var/log/personal-website/pw.err.log
+sudo service supervisor start
 sudo supervisorctl reload
 
 echo "Deployment complete."
