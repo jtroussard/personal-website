@@ -6,6 +6,7 @@ source ./vars.sh
 # Use the exported variables
 echo "APP_DIR is set to $APP_DIR"
 echo "VENV_DIR is set to $VENV_DIR"
+echo "LOG_DIR is set to $LOG_DIR"
 echo "WORKER_COUNT is set to $WORKER_COUNT"
 
 # Define rollback function
@@ -13,7 +14,6 @@ rollback() {
     echo "Rolling back changes..."
 
     # Remove virtual environment directory
-    deactivate
     rm -rf venv
 
     # Remove Nginx config
@@ -47,20 +47,28 @@ git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 cp -r ./* $APP_DIR
 cd $APP_DIR
 
-# Create a virtual environment
-python3 -m venv venv
-source $VENV_DIR/bin/activate
-
 # Install requirements
 pip3 install -r requirements.txt >/dev/null 2>&1
 
 # Configure Nginx
-sudo cp $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
+sudo ln -s $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 echo "NGINX started"
 
 # Configure Supervisor
-sudo cp $APP_DIR/pw-super.conf /etc/supervisor/conf.d/
+sudo ln -sf $APP_DIR/pw-super.conf /etc/supervisor/conf.d/
+
+# Check if directory exists
+if [ ! -d $LOG_DIR ]; then
+  # Create directory if it doesn't exist
+  sudo mkdir -p $LOG_DIR
+  # Change ownership of the directory to the current user
+  sudo chown -R $USER:$USER $LOG_DIR
+  echo "Directory $LOG_DIR created successfully."
+else
+  echo "Directory $LOG_DIR already exists."
+fi
+
 sudo touch /var/log/personal-website/pw.out.log
 sudo touch /var/log/personal-website/pw.err.log
 sudo service supervisor start
