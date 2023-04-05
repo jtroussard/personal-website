@@ -46,12 +46,16 @@ git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 # Move project to prod folder
 cp -r ./* $APP_DIR
 cd $APP_DIR
+echo "The current working directory is $(pwd)"
 
 # Install requirements
-pip3 install -r requirements.txt >/dev/null 2>&1
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+echo "Installed project dependencies"
 
 # Configure Nginx
-sudo ln -s $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
+sudo ln -sf $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 echo "NGINX started"
 
@@ -73,5 +77,6 @@ sudo touch /var/log/personal-website/pw.out.log
 sudo touch /var/log/personal-website/pw.err.log
 sudo service supervisor start
 sudo supervisorctl reload
+echo "$(sudo service supervisor status)"
 
 echo "Deployment complete."
