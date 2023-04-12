@@ -17,7 +17,7 @@ rollback() {
     rm -rf venv
 
     # Remove Nginx config
-    sudo rm /etc/nginx/sites-enabled/pw-nginx.conf
+    sudo rm /etc/nginx/sites-enabled/devlife4.me.conf
     sudo nginx -s reload
 
     # Remove Supervisor config
@@ -55,7 +55,7 @@ pip3 install -r requirements.txt
 echo "Installed project dependencies"
 
 # Configure Nginx
-sudo ln -sf $APP_DIR/pw-nginx.conf /etc/nginx/sites-enabled/
+sudo ln -sf $APP_DIR/devlife4.me.conf /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
 echo "NGINX started"
 
