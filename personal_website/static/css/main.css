@@ -5202,7 +5202,8 @@ Created using IcoMoon - icomoon.io
 /* Professional Skills Style */
 .progress-container {
   margin-bottom: 20px;
-  font-size: 18px; }
+  font-size: 18px;
+  text-align: center; }
   .progress-container .progress-bar {
     height: 5px;
     transform: scaleX(0);
@@ -5216,7 +5217,7 @@ Created using IcoMoon - icomoon.io
 
 /* Experience Style */
 .cc-experience .cc-experience-header {
-  padding-top: 60px;
+  padding-top: 45px;
   padding-right: 0;
   text-align: center;
   color: #fff;

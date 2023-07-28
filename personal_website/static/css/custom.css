@@ -1,0 +1,120 @@
+/* Custom CSS */
+
+/* Experience Style */
+.location-text {
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+/* Professional Skills Style */
+.skill-container {
+  margin-bottom: 22px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+.skill-container .skill-bar {
+  height: 5px;
+  transform: scaleX(0);
+  transition: transform 2s ease-in-out;
+  transform-origin: 0% 0%;
+}
+.skill-container .progress {
+  height: 5px;
+  font-size: 18px;
+}
+.skill-container .aos-animate {
+  transform: scaleX(1);
+}
+
+.skill-container {
+  position: relative;
+}
+.skill-container + .skill-container,
+.skill-container ~ .skill-container {
+  margin-top: 15px;
+}
+.skill-container .skill-badge {
+  color: #888;
+  font-size: 0.8571em;
+  text-transform: uppercase;
+}
+.skill-container .skill {
+  height: 1px;
+  border-radius: 0;
+  box-shadow: none;
+  background: rgba(222, 222, 222, 0.8);
+  margin-top: 14px;
+}
+.skill-container .skill .skill-bar {
+  box-shadow: none;
+  background-color: #888;
+}
+.skill-container .skill .skill-value {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  color: #888;
+  font-size: 0.8571em;
+}
+.skill-container.skill-neutral .skill {
+  background: rgba(255, 255, 255, 0.3);
+}
+.skill-container.skill-neutral .skill-bar {
+  background: #ffffff;
+}
+.skill-container.skill-neutral .skill-value,
+.skill-container.skill-neutral .skill-badge {
+  color: #ffffff;
+}
+.skill-container.skill-primary .skill {
+  background: rgba(55, 140, 63, 0.4);
+}
+.skill-container.skill-primary .skill-bar {
+  background: #378c3f;
+}
+.skill-container.skill-primary .skill-value,
+.skill-container.skill-primary .skill-badge {
+  color: #378c3f;
+}
+.skill-container.skill-info .skill {
+  background: rgba(44, 168, 255, 0.3);
+}
+.skill-container.skill-info .skill-bar {
+  background: #2ca8ff;
+}
+.skill-container.skill-info .skill-value,
+.skill-container.skill-info .skill-badge {
+  color: #2ca8ff;
+}
+.skill-container.skill-success .skill {
+  background: rgba(24, 206, 15, 0.3);
+}
+.skill-container.skill-success .skill-bar {
+  background: #18ce0f;
+}
+.skill-container.skill-success .skill-value,
+.skill-container.skill-success .skill-badge {
+  color: #18ce0f;
+}
+.skill-container.skill-warning .skill {
+  background: rgba(255, 178, 54, 0.3);
+}
+.skill-container.skill-warning .skill-bar {
+  background: #ffb236;
+}
+.skill-container.skill-warning .skill-value,
+.skill-container.skill-warning .skill-badge {
+  color: #ffb236;
+}
+.skill-container.skill-danger .skill {
+  background: rgba(255, 54, 54, 0.3);
+}
+.skill-container.skill-danger .skill-bar {
+  background: #ff3636;
+}
+.skill-container.skill-danger .skill-value,
+.skill-container.skill-danger .skill-badge {
+  color: #ff3636;
+}
