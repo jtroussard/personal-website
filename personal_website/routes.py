@@ -1,5 +1,15 @@
+# pylint: disable=multiple-imports, import-error
+"""
+personal_website.routes
+
+This module defines the routes and view functions for the Flask app.
+
+Routes:
+- / and /home: Renders the home page with portfolio data from a JSON file.
+- /weight-tracker: Renders the "coming-soon" page for the weight tracker demo.
+"""
 import os, json
-from flask import render_template, url_for
+from flask import render_template
 from personal_website import app
 
 @app.route("/")
@@ -17,7 +27,7 @@ def home():
         return "Error: Portfolio data path not set."
 
     # Load the JSON data from the file
-    with open(data_path, 'r') as json_file:
+    with open(data_path, 'r', encoding='utf-8') as json_file:
         portfolio_data = json.load(json_file)
     return render_template("home.html", active_page="home", data=portfolio_data)
 
