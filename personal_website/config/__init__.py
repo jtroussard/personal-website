@@ -1,5 +1,16 @@
-from dotenv import load_dotenv
+# pylint: disable=import-error, too-few-public-methods
+"""
+personal_website.config
+
+This module defines the configuration classes for different environments:
+- ProductionConfig
+- DevelopmentConfig
+- TestingConfig
+
+It also loads environment variables from a .env file using dotenv.
+"""
 import os
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()

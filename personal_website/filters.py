@@ -1,8 +1,24 @@
+# pylint: disable=import-error, no-member
+"""
+personal_website.config
+
+This module defines the configuration classes for different environments:
+- ProductionConfig
+- DevelopmentConfig
+- TestingConfig
+
+It also loads environment variables from a .env file using dotenv.
+"""
 import os
 from flask import url_for
 from personal_website import app
 
 def get_icon_url(input_string):
+    """
+    Jinja2 filter: Get the URL for an icon based on the input string.
+    :param input_string: The input string.
+    :return: The URL for the icon.
+    """
     # Define the directory where the icons are stored
     icons_directory = os.path.join(app.static_folder, 'images', 'icons')
 
@@ -18,5 +34,5 @@ def get_icon_url(input_string):
         return url_for('static', filename=f"images/icons/{icon_filename}")
 
     # If the icon doesn't exist, return a default icon URL
-    app.logger.info(f"returning default icon url")
+    app.logger.info("returning default icon url")
     return url_for('static', filename='images/default-icon.png')
