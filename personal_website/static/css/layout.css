@@ -1,0 +1,11 @@
+.darker-hover {
+    filter: brightness(60%);
+}
+
+.lighter-hover {
+    filter: brightness(140%);
+}
+
+.footer-social {
+    transition: all 0.3s ease-in-out;
+}

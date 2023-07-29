@@ -1,6 +1,8 @@
 # Personal Website
 .DS_Store
 data.json
+portfolio.json
+social.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
