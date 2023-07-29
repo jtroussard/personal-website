@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css', ver='1.1.0') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css', ver='1.1.0') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', ver='1.1.0') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
     <noscript>
         <style type="text/css">
@@ -22,9 +23,12 @@
     </noscript>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-package/favicon.ico') }}">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon-package/favicon_package/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-package/favicon_package/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-package/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='favicon-package/favicon_package/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='favicon-package/favicon_package/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='favicon-package/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ url_for('static', filename='favicon-package/favicon_package/site.webmanifest') }}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -49,8 +53,10 @@
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">About</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Skills</a></li>
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Experience</a></li>
-                            <li class="nav-item"><a class="nav-link smooth-scroll" href="url_for('weight_tracker')">Weight Tracker Demo</a></li>
+                            <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Experience</a>
+                            </li>
+                            <!-- <li class="nav-item"><a class="nav-link smooth-scroll"
+                                    href="url_for('weight_tracker')">Weight Tracker Demo</a></li> -->
                             <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contact</a></li>
                         </ul>
                     </div>
@@ -76,15 +82,23 @@
 
     <footer class="footer">
         {% block footer %}{% endblock %}
-        <div class="container text-center"><a class="cc-facebook btn btn-link" href="#"><i class="fa fa-facebook fa-2x "
-                    aria-hidden="true"></i></a><a class="cc-twitter btn btn-link " href="#"><i
-                    class="fa fa-twitter fa-2x " aria-hidden="true"></i></a><a class="cc-google-plus btn btn-link"
-                href="#"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a><a
-                class="cc-instagram btn btn-link" href="#"><i class="fa fa-instagram fa-2x " aria-hidden="true"></i></a>
+        <div class="container text-center">
+            {% for platform in social %}
+            <a class="cc-{{ platform.name }} btn btn-link"
+            href="{{ platform.url }}">
+            <i class="{{ platform.fontAwesomeIcon }} fa-2x footer-social"
+            style="color: {{ platform.backgroundColor }};"
+            onmouseover="this.classList.add('{{ platform.hoverBehavior }}-hover');"
+            onmouseout="this.classList.remove('{{ platform.hoverBehavior }}-hover');"
+            >
+            </i>
+            </a>
+            {% endfor %}
         </div>
-        <div class="h4 title text-center">Jacques Troussard</div>
+        <div class="h4 title text-center">{{ portfolio.name }}</div>
         <div class="text-center text-muted">
-        <p class="credit">Icons provided by: <a href="https://icons8.com/">icons8.com</a></p>
+            <p class="credit">Icons provided by: <a href="https://icons8.com/">icons8.com</a></p>
+            <p class="credit">Fonts provided by: <a href="https://fontawesome.com/">fontawesome.com</a></p>
         </div>
     </footer>
 
