@@ -1,0 +1,47 @@
+{
+    "name": "",
+    "tagline": "",
+    "location": "",
+    "email": "",
+    "linkedin": "",
+    "about_header": "",
+    "about": "",
+    "spoken_languages": [
+        ""
+    ],
+    "summary": "",
+    "experiences": [
+        {
+            "title": "",
+            "company": "",
+            "duration": "",
+            "description": "",
+            "details": [
+                ""
+            ],
+            "location": "",
+            "workplace": ""
+        }
+    ],
+    "education": [
+        {
+            "institution": "",
+            "degree": "",
+            "concentration": "",
+            "location": ""
+        }
+    ],
+    "licenses_certifications": [
+        ""
+    ],
+    "skills": [
+        {
+            "display_name": "",
+            "name": "",
+            "experience": ""
+        }
+    ],
+    "honors_awards": [
+        ""
+    ]
+}
