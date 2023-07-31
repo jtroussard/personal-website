@@ -5027,6 +5027,7 @@ Created using IcoMoon - icomoon.io
   font-size: 0;
   opacity: 0; }
 
+.gallery .cc-porfolio-image figure ul,
 .gallery .cc-porfolio-image figure .h4,
 .gallery .cc-porfolio-image figure p {
   margin: 0; }
@@ -5054,7 +5055,8 @@ Created using IcoMoon - icomoon.io
   transform-origin: 100% 0; }
 
 .gallery figure.cc-effect .h4 {
-  margin-top: 25%;
+  font-size: 2.25rem;
+  margin-top: 12.5%;
   transition: transform 0.35s;
   opacity: 0; }
   @media (max-width: 480px) {
@@ -5066,6 +5068,7 @@ Created using IcoMoon - icomoon.io
   width: 100%;
   bottom: 20px; }
 
+.gallery figure.cc-effect ul,
 .gallery figure.cc-effect p,
 .gallery figure.cc-effect button {
   padding: 0.5em 2em;
@@ -5074,14 +5077,26 @@ Created using IcoMoon - icomoon.io
   transition: transform 0.35s;
   opacity: 0; }
 
-.gallery figure.cc-effect img,
+.gallery figure.cc-effect p {
+  font-size: 1.0rem; }
+
+.gallery figure.cc-effect ul {
+  font-size: 0.75rem;
+  background-color: #000;
+  text-align: left; }
+
+.gallery figure.cc-effect img {
+  border-radius: 10px; }
+
 .gallery figure.cc-effect .h4 {
   transform: scale(1.06, 1.06); }
 
 .gallery figure.cc-effect img,
 .gallery figure.cc-effect figcaption::before,
 .gallery figure.cc-effect figcaption::after,
+.gallery figure.cc-effect ul,
 .gallery figure.cc-effect p {
+  border-radius: 10px;
   transition: opacity 0.35s, transform 0.35s; }
 
 .gallery figure.cc-effect:hover img {
@@ -5098,6 +5113,7 @@ Created using IcoMoon - icomoon.io
 
 .gallery figure.cc-effect:hover .h4,
 .gallery figure.cc-effect:hover p,
+.gallery figure.cc-effect:hover ul,
 .gallery figure.cc-effect:hover button {
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -5106,6 +5122,7 @@ Created using IcoMoon - icomoon.io
 .gallery figure.cc-effect:hover figcaption::after,
 .gallery figure.cc-effect:hover .h4,
 .gallery figure.cc-effect:hover p,
+.gallery figure.cc-effect:hover ul,
 .gallery figure.cc-effect:hover img {
   transition-delay: 0.15s; }
 
