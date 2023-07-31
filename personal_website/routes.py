@@ -23,26 +23,30 @@ def home():
     # Read the path to the JSON file from the environment variable
     portfolio_data_path = os.environ.get("PORTFOLIO_DATA_PATH")
     social_data_path = os.environ.get("SOCIAL_DATA_PATH")
+    projects_data_path = os.environ.get("PROJECTS_DATA_PATH")
 
     if portfolio_data_path is None:
         app.logger.error("Portfolio data path not set.")
     if social_data_path is None:
         app.logger.error("Social data path not set.")
+    if projects_data_path is None:
+        app.logger.error("Projects data path not set.")
 
     # Load the JSON data from the file
     with open(portfolio_data_path, "r", encoding="utf-8") as profilio_file, open(
         social_data_path, "r", encoding="utf-8"
-    ) as social_file:
+    ) as social_file, open(projects_data_path, "r", encoding="utf-8") as projects_file:
         portfolio_data = json.load(profilio_file)
         social_data = json.load(social_file)
+        projects_data = json.load(projects_file)
     return render_template(
         "home.html",
         active_page="home",
         portfolio=portfolio_data,
         social=social_data,
+        projects=projects_data,
         title="Jacques Troussard",
     )
-
 
 @app.route("/weight-tracker", methods=["GET"])
 def weight_tracker():
