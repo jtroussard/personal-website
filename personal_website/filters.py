@@ -1,4 +1,4 @@
-# pylint: disable=import-error, no-member
+# pylint: disable=import-error, no-member, missing-module-docstring
 import os
 from flask import url_for
 from personal_website import app
