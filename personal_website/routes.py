@@ -9,8 +9,7 @@ Routes:
 - /weight-tracker: Renders the "coming-soon" page for the weight tracker demo.
 """
 import os, json
-from flask import render_template
-from personal_website import app
+from flask import render_template, current_app as app
 
 
 @app.route("/")

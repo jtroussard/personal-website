@@ -1,4 +1,4 @@
-# pylint: disable=wrong-import-position, missing-module-docstring, import-outside-toplevel, import-error
+# pylint: skip-file
 from flask import Flask
 # from personal_website.config import DevelopmentConfig
 
@@ -12,10 +12,13 @@ def register_filters(flask_app):
     flask_app.logger.info('registering filters')
     flask_app.jinja_env.filters['get_icon_url'] = get_icon_url
 
-app = Flask(__name__)
-# app.config.from_object(DevelopmentConfig)
+def init_app():
+    app = Flask(__name__)
+    # app.config.from_object(DevelopmentConfig)
 
-register_filters(app)
+    with app.app_context():
+        register_filters(app)
 
-# Avoid circular dependencies
-from personal_website import routes
+        from . import routes
+
+        return app

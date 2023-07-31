@@ -1,7 +1,6 @@
 # pylint: disable=import-error, no-member, missing-module-docstring
 import os
-from flask import url_for
-from personal_website import app
+from flask import url_for, current_app as app
 
 def get_icon_url(input_string):
     """
