@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Unicorn Farts",
+        "url": "www.unicornfarts.com",
+        "fontAwesomeIcon": "fab fa-unicorn",
+        "icon": "unicorn.png",
+        "color": "#ff00ff",
+        "text": "Magical Sparkles",
+        "textColor": "#ffffff",
+        "backgroundColor": "#333333",
+        "hoverBehavior": "Unicorns appear and grant wishes!"
+    },
+    {
+        "name": "Disco Cat",
+        "url": "www.discocatparty.com",
+        "fontAwesomeIcon": "fas fa-cat",
+        "icon": "disco_cat.gif",
+        "color": "#ffcc00",
+        "text": "Groovy Meows",
+        "textColor": "#000000",
+        "backgroundColor": "#990099",
+        "hoverBehavior": "Starts dancing with funky moves!"
+    },
+    {
+        "name": "Ninja Squirrel",
+        "url": "www.ninjasquirreldojo.com",
+        "fontAwesomeIcon": "fas fa-squirrel",
+        "icon": "ninja_squirrel.png",
+        "color": "#008000",
+        "text": "Stealthy Nutcracker",
+        "textColor": "#ffffff",
+        "backgroundColor": "#ffcc33",
+        "hoverBehavior": "Vanishes in a cloud of acorns!"
+    }
+]

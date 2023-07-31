@@ -1,0 +1,50 @@
+[
+    {
+        "category": "Weapons",
+        "name": "Frying Pan",
+        "url": "www.fryit.com",
+        "title": "The Pan of Doom",
+        "subtitle": "Cooking & Self-Defense",
+        "image": "pan_of_doom.png",
+        "alt-description": "A fierce frying pan",
+        "bullets": [
+            "Unleash your inner chef and whack enemies with delicious meals.",
+            "Perfect for culinary battles and pancake warfare.",
+            "Doubles as a shield against hunger and foes alike.",
+            "Non-stick surface ensures that even trouble won't stick to you.",
+            "Official weapon of the Breakfast Brigade!"
+        ]
+    },
+    {
+        "category": "Transportation",
+        "name": "Turbo Snail",
+        "url": "www.turbosnailriders.com",
+        "title": "Nitro Escargot",
+        "subtitle": "The Speediest Snail on the Planet",
+        "image": "nitro_escargot.jpg",
+        "alt-description": "A snail with flames coming out of its shell",
+        "bullets": [
+            "Race at a blistering top speed of 0.1 mph!",
+            "Customizable shell designs for maximum coolness.",
+            "Eco-friendly fuel: organic kale and rainbows.",
+            "Warning: May cause other snails to feel envious.",
+            "Join the Turbo Snail Riders and become a slow-speed legend!"
+        ]
+    },
+    {
+        "category": "Gadgets",
+        "name": "Infinity Glove",
+        "url": "www.infinityglove.com",
+        "title": "Gadgeteer's Delight",
+        "subtitle": "Rule the Universe with Style",
+        "image": "infinity_glove.png",
+        "alt-description": "A glove with sparkling gems",
+        "bullets": [
+            "Harness the power of infinite USB ports.",
+            "Command all smart devices with the snap of your fingers.",
+            "Comes with a built-in toast maker and coffee dispenser.",
+            "Gems are purely decorative, but they look fantastic!",
+            "Defeat tech support issues with a flick of your wrist."
+        ]
+    }
+]
