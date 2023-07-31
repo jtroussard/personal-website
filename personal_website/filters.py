@@ -1,14 +1,4 @@
 # pylint: disable=import-error, no-member
-"""
-personal_website.config
-
-This module defines the configuration classes for different environments:
-- ProductionConfig
-- DevelopmentConfig
-- TestingConfig
-
-It also loads environment variables from a .env file using dotenv.
-"""
 import os
 from flask import url_for
 from personal_website import app
@@ -35,4 +25,4 @@ def get_icon_url(input_string):
 
     # If the icon doesn't exist, return a default icon URL
     app.logger.info("returning default icon url")
-    return url_for('static', filename='images/default-icon.png')
+    return url_for('static', filename='images/icons/default-icon.png')

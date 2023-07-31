@@ -9,4 +9,4 @@ development server if the script is executed directly.
 from personal_website import app
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=12121, debug=True)
