@@ -254,20 +254,65 @@ The schema guide below describes the structure and fields of the content files.
 }
 ```
 
-### Setting the Environment Variable on Compute Engine:
+### JSON Data Schema: projects.json
 
-To set the PORTFOLIO_DATA_PATH environment variable on your Compute Engine instance, follow these steps:
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "category": { "type": "string" },
+      "name": { "type": "string" },
+      "url": { "type": "string", "format": "uri" },
+      "title": { "type": "string" },
+      "subtitle": { "type": "string" },
+      "image": { "type": "string" },
+      "alt-description": { "type": "string" },
+      "bullets": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "required": ["category", "name", "url", "title", "subtitle", "image", "alt-description", "bullets"],
+    "additionalProperties": false
+  }
+}
+```
 
-SSH into your Compute Engine instance:
+### Setting up the content files on Compute Engine:
+
+SSH into your compute engine, then create the target directory for the content files:
 
 ```bash
-gcloud compute ssh your-instance-name
+sudo mkdir -p /etc/personal-website/content-files
+```
+
+The p option creates any directorys inbetween that are not found.
+
+Upload the files to the remote instance:
+
+```bash
+gcloud compute scp <PATH_TO_LOCAL_FILE> <INSTANCE_NAME>:/etc/personal-website/content-files
+```
+
+Do this for each of the content files.
+
+And finally to complete the process let's restrict these files so that only the personal-website application can access these files. When setting up this application, be sure to target the user created to run the limited permissions required to run the application, in this example a `flask_app_service_acct` user has been created.
+
+Set the permissions on the directory:
+
+```bash
+"sudo chown flask_app_service_acct:flask_app_service_acct <REMOTE_INSTANCE_PATH> && sudo chmod 700 <REMOTE_INSTANCE_PATH>"
 ```
 
 Set the environment variable to point to the JSON file path:
 
 ```bash
-export PORTFOLIO_DATA_PATH=/etc/personal-website/data.json
+export PORTFOLIO_DATA_PATH=/etc/personal-website/portfolio_data.json
+export SOCIAL_DATA_PATH=/etc/personal-website/social_data.json
+export PROJECTS_DATA_PATH=/etc/personal-website/project_data.json
 ```
 
 Optionally, add the above command to the user's .bashrc or .bash_profile file to set the variable automatically on login.
