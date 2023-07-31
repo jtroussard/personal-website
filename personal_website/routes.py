@@ -24,8 +24,6 @@ def home():
     social_data_path = os.environ.get("SOCIAL_DATA_PATH")
     projects_data_path = os.environ.get("PROJECTS_DATA_PATH")
 
-    print(f"portfolio_data_path: {portfolio_data_path}\nsocial_data_path: {social_data_path}\nprojects_data_path: {projects_data_path}")
-
     if portfolio_data_path is None:
         app.logger.error("Portfolio data path not set.")
     if social_data_path is None:
