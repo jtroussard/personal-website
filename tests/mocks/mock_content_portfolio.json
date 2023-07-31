@@ -1,0 +1,65 @@
+{
+    "name": "Chuck Norris",
+    "tagline": "The Roundhouse Kick Developer",
+    "location": "Texas, USA",
+    "email": "chuck@kickit.com",
+    "linkedin": "linkedin.com/in/chucknorris",
+    "about_header": "Chuck Norris - The Legend",
+    "about": "I am not a developer; I roundhouse kick bugs until they give up. When I code, my keyboard gets scared.",
+    "spoken_languages": [
+        "English",
+        "Python",
+        "Kicking",
+        "Chuck-speak"
+    ],
+    "summary": "I am Chuck Norris. That's all you need to know!",
+    "experiences": [
+        {
+            "title": "Code Wrangler",
+            "company": "The Coding Dojo",
+            "duration": "2020 - Present",
+            "description": "Single-handedly fought a thousand bugs and won.",
+            "details": [
+                "Implemented a roundhouse kick algorithm for optimal performance.",
+                "Increased team efficiency by 500% by telling them jokes.",
+                "Chuck Norris doesn't write documentation; he stares at the code until it starts talking."
+            ],
+            "location": "Dallas, Texas, USA",
+            "workplace": "The Dojo of Doom"
+        }
+    ],
+    "education": [
+        {
+            "institution": "Chuck Norris University",
+            "degree": "Bachelor of Kickin' it",
+            "concentration": "Martial Arts and Code",
+            "location": "The Land of Roundhouse Kicks"
+        }
+    ],
+    "licenses_certifications": [
+        "Certified in Roundhouse Kicking Bugs",
+        "Black Belt in Code Fu"
+    ],
+    "skills": [
+        {
+            "display_name": "Roundhouse Kicking",
+            "name": "roundhouse_kicking",
+            "experience": "30 years"
+        },
+        {
+            "display_name": "Pythonic Beard Growing",
+            "name": "python_beard_growing",
+            "experience": "10 years"
+        },
+        {
+            "display_name": "Infinite Loop Avoidance",
+            "name": "infinite_loop_avoidance",
+            "experience": "Eternal"
+        }
+    ],
+    "honors_awards": [
+        "Chuck Norris Award for Awesomeness",
+        "Kicked the Most Bugs in a Single Day Award",
+        "The Developer with the Best Roundhouse Kick"
+    ]
+}
