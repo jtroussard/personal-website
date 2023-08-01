@@ -5,7 +5,7 @@
         "url": "www.fryit.com",
         "title": "The Pan of Doom",
         "subtitle": "Cooking & Self-Defense",
-        "image": "pan_of_doom.png",
+        "image": "default.png",
         "alt-description": "A fierce frying pan",
         "bullets": [
             "Unleash your inner chef and whack enemies with delicious meals.",
@@ -21,7 +21,7 @@
         "url": "www.turbosnailriders.com",
         "title": "Nitro Escargot",
         "subtitle": "The Speediest Snail on the Planet",
-        "image": "nitro_escargot.jpg",
+        "image": "default.jpg",
         "alt-description": "A snail with flames coming out of its shell",
         "bullets": [
             "Race at a blistering top speed of 0.1 mph!",
@@ -37,7 +37,7 @@
         "url": "www.infinityglove.com",
         "title": "Gadgeteer's Delight",
         "subtitle": "Rule the Universe with Style",
-        "image": "infinity_glove.png",
+        "image": "default.png",
         "alt-description": "A glove with sparkling gems",
         "bullets": [
             "Harness the power of infinite USB ports.",
