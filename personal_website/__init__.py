@@ -1,5 +1,6 @@
 # pylint: skip-file
 from flask import Flask
+from .config import Config
 # from personal_website.config import DevelopmentConfig
 
 # Helper functions
@@ -14,7 +15,7 @@ def register_filters(flask_app):
 
 def init_app():
     app = Flask(__name__)
-    # app.config.from_object(DevelopmentConfig)
+    app.config.from_object(Config)
 
     with app.app_context():
         register_filters(app)

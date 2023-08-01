@@ -20,9 +20,15 @@ def home():
     :return: The home.html file is being returned.
     """
     # Read the path to the JSON file from the environment variable
-    portfolio_data_path = os.environ.get("PORTFOLIO_DATA_PATH")
-    social_data_path = os.environ.get("SOCIAL_DATA_PATH")
-    projects_data_path = os.environ.get("PROJECTS_DATA_PATH")
+    portfolio_data_path = os.environ.get(
+        "PORTFOLIO_DATA_PATH", "personal_website/content_files/portfolio.json"
+    )
+    social_data_path = os.environ.get(
+        "SOCIAL_DATA_PATH", "personal_website/content_files/social.json"
+    )
+    projects_data_path = os.environ.get(
+        "PROJECTS_DATA_PATH", "personal_website/content_files/projects.json"
+    )
 
     if portfolio_data_path is None:
         app.logger.error("Portfolio data path not set.")
@@ -46,6 +52,7 @@ def home():
         projects=projects_data,
         title="Jacques Troussard",
     )
+
 
 @app.route("/weight-tracker", methods=["GET"])
 def weight_tracker():
