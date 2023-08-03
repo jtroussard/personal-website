@@ -1,4 +1,4 @@
-# name: Pylint and Unit Tests
+name: Pylint and Unit Tests
 
 on:
   pull_request:
