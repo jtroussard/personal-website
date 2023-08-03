@@ -1,0 +1,40 @@
+name: Deploy Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Google Compute Engine
+        env:
+          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          GCP_COMPUTE_INSTANCE_USER: ${{ secrets.HOST_SERVER_USER }}
+          GCP_COMPUTE_INSTANCE_ZONE: ${{ secrets.GCP_COMPUTE_INSTANCE_ZONE }}
+          GCP_COMPUTE_INSTANCE_NAME: ${{ secrets.GCP_COMPUTE_INSTANCE_NAME }}
+          USER: ${{ secrets.USER }}
+
+        run: |
+          echo "$GCP_SA_KEY" > gcp_key.json
+          echo "DONE: get key"
+          gcloud auth activate-service-account --key-file=gcp_key.json
+          echo "DONE: activate service account"
+          gcloud config set project $GCP_PROJECT_ID
+          echo "DONE: set project"
+          gcloud compute instances list
+          echo "DONE: list instances"
+      
+          # SSH into the compute engine and execute deployment commands
+          gcloud compute ssh $GCP_COMPUTE_INSTANCE_NAME \
+            --zone $GCP_COMPUTE_INSTANCE_ZONE \
+            --command="cd /home/$GCP_COMPUTE_INSTANCE_USER/personal-website && \
+            sudo -u $USER git pull origin main && \
+            source venv/bin/activate && \
+            pip install -r requirements.txt && \
+            sudo supervisorctl restart personal-website && \
+            sudo supervisorctl status personal-website >> report.txt && \
+            cat report.txt"
