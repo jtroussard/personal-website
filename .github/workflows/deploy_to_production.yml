@@ -2,6 +2,8 @@ name: Deploy Workflow
 
 on:
   pull_request:
+    types: 
+      [closed]
     branches:
       - main
 
@@ -25,8 +27,6 @@ jobs:
           echo "DONE: activate service account"
           gcloud config set project $GCP_PROJECT_ID
           echo "DONE: set project"
-          gcloud compute instances list
-          echo "DONE: list instances"
       
           # SSH into the compute engine and execute deployment commands
           gcloud compute ssh $GCP_COMPUTE_INSTANCE_NAME \
