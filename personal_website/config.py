@@ -4,7 +4,7 @@ from os import environ, path
 from dotenv import load_dotenv
 
 program_env = environ.get("PROGRAM_ENV", "development")
-location_env = environ.get("LOCATION_ENV", path.dirname(__file__))
+location_env = environ.get("LOCATION_ENV", path.dirname(__file__)) # /path/to/your/project/
 dotenv_path = path.join(f"{location_env}", f"{program_env}.env")
 print(f"dotenv_path: {dotenv_path}")
 load_dotenv(dotenv_path=dotenv_path)
