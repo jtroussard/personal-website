@@ -53,7 +53,6 @@ def home():
         title="Jacques Troussard",
     )
 
-
 @app.route("/weight-tracker", methods=["GET"])
 def weight_tracker():
     """

@@ -21,9 +21,13 @@ Create the content files, [fill them out as per the schema described here](#conf
 ```bash
 export PORTFOLIO_DATA_PATH=./personal_website/portfolio.json
 export SOCIAL_DATA_PATH=./personal_website/social.json
+export PROJECTS_DATA_PATH=
 ```
 
 __HINT__ empty demo content files are located in the `doc/` directory.
+
+### Additional Environment Variables that Need to be Set
+TBD
 
 ## Starting the Server (Development Mode)
 
@@ -371,4 +375,3 @@ Set up logging mechanisms to monitor and troubleshoot issues.
 
 Flask (Python) for both the public-facing app and Private API Service.
 GitLab: Try something different and show how code resources can be managed on different platforms and still work together. If for any reason, just to say I can do it xD
-Docker for containerization and easy deployment.
