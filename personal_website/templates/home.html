@@ -12,8 +12,10 @@
                 alt="Image" /></a></div>
           <div class="h2 title">{{ portfolio.name }}</div>
           <p class="category text-white">{{ portfolio.tagline }}</p>
-          <a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a>
-          <a class="btn btn-primary" href="{{ url_for('static', filename='resume.pdf') }}" data-aos="zoom-in" data-aos-anchor="data-aos-anchor" download>Download CV</a>
+          <a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in"
+            data-aos-anchor="data-aos-anchor" data-toggle="modal" data-target="#hireMeModal">Hire Me</a>
+          <a class="btn btn-primary" href="{{ url_for('static', filename='resume.pdf') }}" data-aos="zoom-in"
+            data-aos-anchor="data-aos-anchor" download>Download CV</a>
         </div>
       </div>
       <div class="section">
@@ -21,11 +23,8 @@
           <div class="button-container">
             {% for platform in social %}
             <a class="btn btn-default btn-round btn-lg btn-icon"
-            style="background-color: {{ platform.backgroundColor }};"
-            href={{ platform.url }}
-            rel="tooltip"
-            title="Follow me on {{ platform.text }}"
-            >
+              style="background-color: {{ platform.backgroundColor }};" href={{ platform.url }} rel="tooltip"
+              title="Follow me on {{ platform.text }}">
               <i class="{{ platform.fontAwesomeIcon }}"></i>
             </a>
             {% endfor %}
@@ -123,24 +122,23 @@
         <div class="ml-auto mr-auto">
           <div class="row">
             {% for project in projects %}
-              {% if loop.index0 % 2 == 0 or loop.first %}
-                <div class="col-md-6">
+            {% if loop.index0 % 2 == 0 or loop.first %}
+            <div class="col-md-6">
               {% endif %}
               <div class="cc-porfolio-image img-raised" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                 <a href={{ project.url }}>
                   <figure class="cc-effect"><img src="{{ url_for('static', filename='images/' ~ project.image) }}"
-                  class="rounded-image" alt="{{ project.description }}" />
+                      class="rounded-image" alt="{{ project.description }}" />
                     <figcaption>
                       <div class="h4">{{ project.title }}</div>
                       <p>{{ project.subtitle }}</p>
                       {% for bullet in project.bullets %}
                       {% if loop.first %}
                       <ul>
-                      {% endif %}
-                        {% if loop.index0 < 3 %}
-                        <li>{{ bullet }}</li>
                         {% endif %}
-                      {% if loop.last %}
+                        {% if loop.index0 < 3 %} <li>{{ bullet }}</li>
+                          {% endif %}
+                          {% if loop.last %}
                       </ul>
                       {% endif %}
                       {% endfor %}
@@ -149,8 +147,8 @@
                 </a>
               </div>
               {% if loop.index0 % 2 == 1 or loop.last %}
-                </div>
-              {% endif %}
+            </div>
+            {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -176,11 +174,11 @@
             <div class="h5">{{ experience.title }}</div>
             <p>{{ experience.description }}</p>
             {% if experience.details %}
-              <ul>
-                {% for detail in experience.details %}
-                <li>{{ detail }}</li>
-                {% endfor %}
-              </ul>
+            <ul>
+              {% for detail in experience.details %}
+              <li>{{ detail }}</li>
+              {% endfor %}
+            </ul>
             {% endif %}
           </div>
         </div>
@@ -206,7 +204,7 @@
             <div class="h5">{{ school.concentration }}</div>
             <p class="category">{{ school.institution }}</p>
             {% if school.description %}
-              <p>{{ school.description }}</p>
+            <p>{{ school.description }}</p>
             {% endif %}
           </div>
         </div>
@@ -229,14 +227,15 @@
           <div class="carousel-item active">
             <div class="row">
               <div class="col-lg-2 col-md-3 cc-reference-header">
-                <img
-                  src="{{ url_for('static', filename='images/logos/logo-linkedin-square.png') }}" alt="Linkedin logo" />
+                <img src="{{ url_for('static', filename='images/logos/logo-linkedin-square.png') }}"
+                  alt="Linkedin logo" />
                 <!-- <div class="h5 pt-2">Aiyana</div>
                 <p class="category">CEO / WEBM</p> -->
               </div>
               <div class="col-lg-10 col-md-9">
                 <h2>Linkedin Referrals Feature Coming Soon!!!</h2>
-                <p>New feature will use Linkedin's API to authenticate visitors and retireve referrals on my Linkedin Profile and render them here!</p>
+                <p>New feature will use Linkedin's API to authenticate visitors and retireve referrals on my Linkedin
+                  Profile and render them here!</p>
               </div>
             </div>
           </div>
@@ -274,6 +273,66 @@
           </div> -->
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="hireMeModal" tabindex="-1" role="dialog" aria-labelledby="hireMeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="hireMeModal">Let's Work Together</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Thank you for your interest in working with me. Please fill out the contact form below and I'll get back to
+          you as soon as possible to discuss your project needs.</p>
+
+        <form method="POST" action="/hire-me" id="hireMeForm">
+          {{ form.csrf_token }}
+          <div class="form-group">
+            {{ form.name.label }} {{ form.name(class="form-control", ) }}
+          </div>
+          {% for error in form.name.errors %}
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+          {% endfor %}
+          <div class="form-group">
+            {{ form.email.label }} {{ form.email(class="form-control", ) }}
+          </div>
+          {% for error in form.email.errors %}
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>
+          {% endfor %}
+          <div class="form-group">
+            {{ form.message.label }} {{ form.message(class="form-control", rows="3") }}
+          </div>
+          {% for error in form.message.errors %}
+          <div class="alert alert-danger mt-3">
+            {{ error }}
+          </div>
+          {% endfor %}
+          <div id="recaptcha">
+            <div class="form-group mt-3">
+              {{ form.recaptcha(class="form-control") }}
+            </div>
+            {% for error in form.recaptcha.errors %}
+            <div class="alert alert-danger">
+              {{ error }}
+            </div>
+            {% endfor %}
+          </div>
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" onclick="submitHireMeForm(event)">Send Message</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -350,4 +409,56 @@
     </div>
   </div>
 </div> -->
+{% endblock %}
+{% block scripts %}
+<script>
+  // TODO - move this to a separate file
+  function submitHireMeForm() {
+    let formData = $('#hireMeForm').serialize();
+
+    $.ajax({
+      type: 'POST',
+      url: '/hire-me',
+      data: formData,
+      success: function (response) {
+        $('#hireMeModal').modal('hide');
+        // TODO: send email
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        if (jqXHR.status == 400) {
+          let alertDivs = document.querySelectorAll('.alert');
+          if (alertDivs) {
+            alertDivs.forEach(alertDiv => {
+              alertDiv.remove();
+            });
+          };
+
+          let formErrors = JSON.parse(jqXHR.responseText);
+          for (let error in formErrors.errors) {
+            let errorDiv = document.createElement('div');
+            errorDiv.classList.add('alert', 'alert-warning');
+            errorDiv.innerHTML = formErrors.errors[error];
+            let formGroup = document.getElementById(error).parentElement;
+            formGroup.append(errorDiv);
+          }
+        } else if (jqXHR.status == 500) {
+          let alertDivs = document.querySelectorAll('.alert');
+          if (alertDivs) {
+            alertDivs.forEach(alertDiv => {
+              alertDiv.remove();
+            });
+          };
+
+          let errorDiv = document.createElement('div');
+          errorDiv.classList.add('alert', 'alert-warning');
+          errorDiv.innerHTML = 'Something went wrong. Please try again later.';
+          let formGroup = document.getElementById('recaptcha').parentElement;
+          formGroup.append(errorDiv);
+        } else {
+          console.log('Something went wrong. Please try again later.');
+        }
+      }
+    });
+  }
+</script>
 {% endblock %}

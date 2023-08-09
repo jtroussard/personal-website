@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 program_env = environ.get("PROGRAM_ENV", "development")
 location_env = environ.get("LOCATION_ENV", path.dirname(__file__))
 dotenv_path = path.join(f"{location_env}", f"{program_env}.env")
-print(f"dotenv_path: {dotenv_path}")
 load_dotenv(dotenv_path=dotenv_path)
 
 # basedir = path.abspath(path.dirname(__file__))
@@ -25,6 +24,10 @@ class Config:
     TEMPLATES_FOLDER = "templates"
     HOST = environ.get("HOST", "localhost")
     PORT = environ.get("PORT", "12031")
+    RECAPTCHA_PUBLIC_KEY = environ.get("RECAPTCHA_PUBLIC_KEY", "1234567890987654321")
+    RECAPTCHA_PRIVATE_KEY = environ.get("RECAPTCHA_PRIVATE_KEY", "1234567890987654321")
+    SENDGRID_API_KEY = environ.get("SENDGRID_API_KEY", "1234567890987654321")
+    MAIL_DEFAULT_SENDER = environ.get("MAIL_DEFAULT_SENDER", "your_email@example.com")
 
     # Conditionals
     # SERVER_NAME causes some issues during local development, but is required for

@@ -29,11 +29,12 @@
         href="{{ url_for('static', filename='favicon-package/favicon_package/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16"
         href="{{ url_for('static', filename='favicon-package/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ url_for('static', filename='favicon-package/favicon_package/site.webmanifest') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon-package/site.webmanifest') }}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- Custom Styles -->
     {% block styles %}{% endblock %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-60XRH38JF7"></script>
@@ -114,8 +115,8 @@
     <script src="{{ url_for('static', filename='js/core/jquery.3.2.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/core/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/now-ui-kit.js') }}"></script>
     <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/now-ui-kit.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 
     <!-- Custom Scripts -->
