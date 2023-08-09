@@ -4,3 +4,6 @@ ignore-paths=
     ./venv/*,
     ./tests/*,
 clear-cache-post-run=true
+
+[MESSAGES CONTROL]
+disable=line-too-long

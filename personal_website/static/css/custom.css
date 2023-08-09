@@ -118,3 +118,49 @@
 .skill-container.skill-danger .skill-badge {
   color: #ff3636;
 }
+
+.modal {
+  z-index: 9999;
+}
+
+.modal-content {
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.modal-backdrop {
+  z-index: 1000;
+}
+
+@media (min-width:576px) {
+  .modal-dialog {
+      max-width: 45%;
+  }
+}
+
+.modal-body .alert.alert-success {
+  color: coral;
+  background-color: transparent;
+}
+.modal-body .alert.alert-danger {
+  color: coral;
+  background-color: transparent;
+}
+.modal-body .alert.alert-warning {
+  color: coral;
+  background-color: transparent;
+}
+.modal-body .alert.alert-info {
+  color: coral;
+  background-color: transparent;
+}
+.modal-body .alert.alert-primary {
+  color: coral;
+  background-color: transparent;
+}
+
+.cc-profile-image img {
+  z-index: 1049;
+}
