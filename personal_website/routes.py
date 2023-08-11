@@ -81,19 +81,20 @@ def hire_me():
     form = HireMeForm(request.form)
     if request.method == "POST":
         if form.validate_on_submit():
-
             # Sanitize the user-generated content before using it in HTML
             sanitized_message = bleach.clean(form.message.data, strip=True)
 
             message = Mail(
-                from_email=os.getenv("DEFAULT_MAIL_SENDER"),
-                to_emails=os.getenv("DEFAULT_MAIL_SENDER"),
+                from_email=os.getenv("MAIL_DEFAULT_SENDER"),
+                to_emails=os.getenv("MAIL_DEFAULT_SENDER"),
                 subject="New Hire Me Form Submission",
                 html_content=f"<strong>{sanitized_message}</strong>",
             )
 
             try:
-                sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY')) # pylint: disable=invalid-name
+                sg = SendGridAPIClient(
+                    os.environ.get("SENDGRID_API_KEY")
+                )  # pylint: disable=invalid-name
                 response = sg.send(message)
                 app.logger.info(response.status_code)
                 app.logger.info(response.body)
@@ -110,7 +111,9 @@ def hire_me():
                 for header in resp.headers:
                     app.logger.info(header)
                 return resp
-            except Exception as error: # pylint: disable=unused-variable, broad-exception-caught
+            except (
+                Exception
+            ) as error:  # pylint: disable=unused-variable, broad-exception-caught
                 response = {"message": "Form submission failed!"}
                 app.logger.error(error)
                 return jsonify(response), 500
