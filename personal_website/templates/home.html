@@ -441,6 +441,7 @@
             let formGroup = document.getElementById(error).parentElement;
             formGroup.append(errorDiv);
           }
+          console.log('Please fix the errors and try again.');
         } else if (jqXHR.status == 500) {
           let alertDivs = document.querySelectorAll('.alert');
           if (alertDivs) {

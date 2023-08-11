@@ -11,8 +11,9 @@ Routes:
 """
 import os
 import json
+import bleach
 from flask import current_app as app
-from flask import render_template, request, jsonify
+from flask import render_template, request, jsonify, make_response
 
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
@@ -26,8 +27,11 @@ def home():
     """
     Route: Home page.
     :return: The home.html file is being returned.
+
+    Developer Notes:
+    - Eventually will build a containerized service to serve application data.
+    - Maybe =)
     """
-    # Read the path to the JSON file from the environment variable
     portfolio_data_path = os.environ.get(
         "PORTFOLIO_DATA_PATH", "personal_website/content_files/portfolio.json"
     )
@@ -45,7 +49,6 @@ def home():
     if projects_data_path is None:
         app.logger.error("Projects data path not set.")
 
-    # Load the JSON data from the file
     with open(portfolio_data_path, "r", encoding="utf-8") as profilio_file, open(
         social_data_path, "r", encoding="utf-8"
     ) as social_file, open(projects_data_path, "r", encoding="utf-8") as projects_file:
@@ -70,15 +73,23 @@ def hire_me():
     """
     Route: Handles the submission of the "Hire Me" form.
     :return: JSON response indicating the status of the form submission.
+
+    Developer Notes:
+    - This route is the first API call in the app.
+    - Consider refactoring into an API layer if more endpoints are added.
     """
     form = HireMeForm(request.form)
     if request.method == "POST":
         if form.validate_on_submit():
+
+            # Sanitize the user-generated content before using it in HTML
+            sanitized_message = bleach.clean(form.message.data, strip=True)
+
             message = Mail(
                 from_email=os.getenv("DEFAULT_MAIL_SENDER"),
                 to_emails=os.getenv("DEFAULT_MAIL_SENDER"),
                 subject="New Hire Me Form Submission",
-                html_content=f"<strong>{form.message.data}</strong>",
+                html_content=f"<strong>{sanitized_message}</strong>",
             )
 
             try:
@@ -86,11 +97,22 @@ def hire_me():
                 response = sg.send(message)
                 app.logger.info(response.status_code)
                 app.logger.info(response.body)
-                app.logger.info(response.headers)
                 response = {"message": "Form submitted successfully!"}
-                return jsonify(response), 200
+                resp = make_response(jsonify(response), 200)
+                resp.headers["Strict-Transport-Security"] = "max-age=31536000"
+                resp.headers["X-Frame-Options"] = "DENY"
+                resp.headers["Content-Security-Policy"] = "default-src 'self';"
+                resp.headers["X-Content-Type-Options"] = "nosniff"
+                resp.headers["X-XSS-Protection"] = "1; mode=block"
+                resp.headers["X-Content-Duration"] = "0"
+                resp.headers["Expect-CT"] = "enforce, max-age=2592000"
+                app.logger.info("------- HEADERS -------")
+                for header in resp.headers:
+                    app.logger.info(header)
+                return resp
             except Exception as error: # pylint: disable=unused-variable, broad-exception-caught
                 response = {"message": "Form submission failed!"}
+                app.logger.error(error)
                 return jsonify(response), 500
         else:
             return (
