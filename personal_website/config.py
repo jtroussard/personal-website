@@ -8,17 +8,13 @@ location_env = environ.get("LOCATION_ENV", path.dirname(__file__))
 dotenv_path = path.join(f"{location_env}", f"{program_env}.env")
 load_dotenv(dotenv_path=dotenv_path)
 
-# basedir = path.abspath(path.dirname(__file__))
-# load_dotenv(path.join(basedir, '.env'))
-
-
 class Config:
     """Set Flask config variables."""
 
     # General Config
     ENVIRONMENT = environ.get("ENVIRONMENT", "development")
     FLASK_APP = environ.get("FLASK_APP", "app")
-    FLASK_DEBUG = environ.get("FLASK_DEBUG", "true")
+    DEBUG = environ.get("DEBUG", "true")
     SECRET_KEY = environ.get("SECRET_KEY", "1234567890987654321")
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
