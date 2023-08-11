@@ -35,5 +35,5 @@ class Config:
 
     def __repr__(self) -> str:
         return f"<Config:\n  ENVIRONMENT: {self.ENVIRONMENT}\n  FLASK_APP: \
-            {self.FLASK_APP}\n  FLASK_DEBUG: {self.FLASK_DEBUG}\n  SECRET_KEY: \
+            {self.FLASK_APP}\n  DEBUG: {self.DEBUG}\n  SECRET_KEY: \
                 {self.SECRET_KEY}\n  HOST: {self.HOST}\n  PORT: {self.PORT}\n>"
