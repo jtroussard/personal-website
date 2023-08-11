@@ -1,4 +1,4 @@
-# pylint: disable=multiple-imports,import-error,no-member
+# pylint: disable=multiple-imports,import-error,no-member,unused-variable,broad-exception-caught,invalid-name
 """
 personal_website.routes
 
@@ -113,7 +113,7 @@ def hire_me():
                 return resp
             except (
                 Exception
-            ) as error:  # pylint: disable=unused-variable, broad-exception-caught
+            ) as error:
                 response = {"message": "Form submission failed!"}
                 app.logger.error(error)
                 return jsonify(response), 500
