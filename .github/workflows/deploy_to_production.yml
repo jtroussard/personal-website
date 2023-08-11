@@ -1,11 +1,9 @@
 name: Deploy Workflow
 
 on:
-  pull_request:
-    types: 
-      [closed]
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 jobs:
   deploy:
