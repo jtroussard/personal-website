@@ -1,47 +1,50 @@
 {
-    "name": "",
-    "tagline": "",
-    "location": "",
-    "email": "",
-    "linkedin": "",
-    "about_header": "",
-    "about": "",
+    "name": "Chuck Norris",
+    "tagline": "Bringing laughter to the world",
+    "location": "Roundhouse, Texas",
+    "email": "chuck@laughter.com",
+    "linkedin": "linkedin.com/in/chucknorris",
+    "about_header": "Just a Chuckle",
+    "about": "I'm not just a meme, I'm a full-time comedian and part-time superhero. My jokes are so funny, they make onions cry.",
     "spoken_languages": [
-        ""
+        "English", "Roundhouse Kick"
     ],
-    "summary": "",
+    "summary": "I tell jokes that are so funny, people laugh even before I finish them.",
     "experiences": [
         {
-            "title": "",
-            "company": "",
-            "duration": "",
-            "description": "",
+            "title": "Chief Chuckler",
+            "company": "Worldwide Guffaws Inc.",
+            "duration": "2010 - Present",
+            "description": "Making the world laugh one punchline at a time.",
             "details": [
-                ""
+                "Performed at over 1000 comedy clubs worldwide",
+                "Held record for longest continuous laughter at 10 hours",
+                "Developed Chuck Norris Approved Comedy Technique™"
             ],
-            "location": "",
-            "workplace": ""
+            "location": "Laughington, Universe",
+            "workplace": "Floating Stage"
         }
     ],
     "education": [
         {
-            "institution": "",
-            "degree": "",
-            "concentration": "",
-            "location": ""
+            "institution": "School of Chuckles",
+            "degree": "Master of Comedy",
+            "concentration": "Jokes and Puns",
+            "location": "Giggleville, Comedyland"
         }
     ],
     "licenses_certifications": [
-        ""
+        "Certified in Advanced Knock-Knock Jokes"
     ],
     "skills": [
         {
-            "display_name": "",
-            "name": "",
-            "experience": ""
+            "display_name": "Roundhouse Kick",
+            "name": "Martial Arts",
+            "experience": "Over 9000 kicks delivered"
         }
     ],
     "honors_awards": [
-        ""
+        "Funniest Chuckle of the Decade",
+        "Honorary Laughologist"
     ]
 }

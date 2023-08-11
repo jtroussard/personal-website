@@ -1,13 +1,35 @@
 [
     {
-        "name": "",
-        "url": "",
-        "fontAwesomeIcon": "",
+        "name": "YouTube",
+        "url": "https://www.youtube.com/user/YourChannel",
+        "fontAwesomeIcon": "fa fa-youtube",
         "icon": "",
         "color": "",
-        "text": "",
-        "textColor": "",
-        "backgroundColor": "",
-        "hoverBehavior": ""
+        "text": "Subscribe on YouTube",
+        "textColor": "#ffffff",
+        "backgroundColor": "#ff0000",
+        "hoverBehavior": "changeColor"
+    },
+    {
+        "name": "Stack Overflow",
+        "url": "https://stackoverflow.com/users/YourProfile",
+        "fontAwesomeIcon": "fa fa-stack-overflow",
+        "icon": "",
+        "color": "",
+        "text": "Check out my answers on Stack Overflow",
+        "textColor": "#ffffff",
+        "backgroundColor": "#f48024",
+        "hoverBehavior": "changeColor"
+    },
+    {
+        "name": "Instagram",
+        "url": "https://www.instagram.com/yourusername/",
+        "fontAwesomeIcon": "fa fa-instagram",
+        "icon": "",
+        "color": "",
+        "text": "Follow me on Instagram",
+        "textColor": "#ffffff",
+        "backgroundColor": "#e4405f",
+        "hoverBehavior": "changeColor"
     }
 ]
