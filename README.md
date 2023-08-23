@@ -12,43 +12,34 @@ To run the website locally, you'll need to install the following dependencies:
 - Flask (pip install Flask)
 - gunicorn (pip install gunicorn)
 
-## Required Configurations
+# SETUP SECTION WIP
+## Development Setup
 
-Content for this website is provided via simple json files.
+- Clone repository
+- Create `.env` directory
+- set preconfig env variables
+  - PROGRAM_ENV
+  - LOCATION_ENV
+  - KAGIS: This is where you put your service account keys for development mode
+## Production Setup
+`/etc/supervisor/conf.d/{application specific conf for supervisor file name}`
+- set PROGRAM_ENV
+- set LOCATION_ENV
 
-Create the content files, [fill them out as per the schema described here](#configuration), then run these terminal commands to tell the flask appliction where to load the files from:
+## Content Interpolation
 
-```bash
-export PORTFOLIO_DATA_PATH=./personal_website/portfolio.json
-export SOCIAL_DATA_PATH=./personal_website/social.json
-export PROJECTS_DATA_PATH=
-```
+Previous version of this application loaded content in category chunks via files servered from the host serve. They are now accessed via a google cloud bucket, acting as a private CDN. Updates to the content is performed via object upload to the bucket.
 
-__HINT__ empty demo content files are located in the `doc/` directory.
+No more setting content file paths via configurations. This will be updated as part of a clean up branch in the near future.
 
-### Additional Environment Variables that Need to be Set
-TBD
+Create the content files, [fill them out as per the schema described here](#configuration), then upload to the target bucket.
 
-## Starting the Server (Development Mode)
+__HINT__ empty demo content files are located in the `doc/` directory. <=== no longer relevant but still need to doc development content delivery
 
-```bash
-python run.py`
-```
 
-or if you preferr to use flask
 
-```bash
-export FLASK_APP=personal_website
-flask run
-```
 
-You can modify your server passing options to the flask command like this...
-
-```bash
-flask run --debug --port 12345
-```
-
-## Deployment
+## Deployment (Needs updating)
 
 To deploy the website to a Google Cloud Compute Engine instance, follow these steps:
 
@@ -85,293 +76,12 @@ This will start the website on port 80.
 
 1. Finally, configure your domain name to point to the external IP address of your Compute Engine instance.
 
-## Configuration
 
-### Content files JSON Schema
-
-Several content files are used to interpolate data. This is to allow for single point of updates and to allow for future flexibility. All content files need to be provided, as they are critical for the use case of this web application. No defaults or error checking for the completeness of this data is provided. Additionally these paths need to be set for the application to boot correcly.
-
-* `PORTFOLIO_DATA_PATH`
-* `SOCIAL_DATA_PATH`
-
-No defaults for these either.
-
-### List of required content files
-
-- `portfolio.json`: Used to populate the resume data content of the application.
-- `social.json`: Used to populate and configure any driving data for social media links, icons, etc.
-
-The schema guide below describes the structure and fields of the content files.
-
-### JSON Data Schema: portfolio.json
-
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "properties": {
-    "name": { "type": "string" },
-    "tagline": { "type": "string" },
-    "location": { "type": "string" },
-    "email": { "type": "string", "format": "email" },
-    "linkedin": { "type": "string", "format": "uri" },
-    "about_header": { "type": "string" },
-    "about": { "type": "string" },
-    "spoken_languages": {
-      "type": "array",
-      "items": { "type": "string" }
-    },
-    "summary": { "type": "string" },
-    "experiences": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "title": { "type": "string" },
-          "company": { "type": "string" },
-          "duration": { "type": "string" },
-          "description": { "type": "string" },
-          "details": {
-            "type": "array",
-            "items": { "type": "string" }
-          },
-          "location": { "type": "string" },
-          "workplace": { "type": "string" }
-        },
-        "required": [
-          "title",
-          "company",
-          "duration",
-          "description",
-          "location",
-          "workplace"
-        ]
-      }
-    },
-    "education": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "institution": { "type": "string" },
-          "degree": { "type": "string" },
-          "concentration": { "type": "string" },
-          "location": { "type": "string" }
-        },
-        "required": ["institution", "degree", "location"]
-      }
-    },
-    "licenses_certifications": {
-      "type": "array",
-      "items": { "type": "string" }
-    },
-    "skills": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "display_name": { "type": "string" },
-          "name": { "type": "string" },
-          "experience": { "type": "string", "format": "date" }
-        },
-        "required": ["display_name", "name", "experience"]
-      }
-    },
-    "honors_awards": {
-      "type": "array",
-      "items": { "type": "string" }
-    }
-  },
-  "required": [
-    "name",
-    "tagline",
-    "location",
-    "email",
-    "linkedin",
-    "about_header",
-    "about",
-    "spoken_languages",
-    "summary",
-    "experiences",
-    "education",
-    "licenses_certifications",
-    "skills",
-    "honors_awards"
-  ]
-}
-```
-
-### JSON Data Schema: social.json
-
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "url": {
-        "type": "string",
-        "format": "uri"
-      },
-      "fontAwesomeIcon": {
-        "type": "string"
-      },
-      "icon": {
-        "type": "string"
-      },
-      "color": {
-        "type": "string",
-        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-      },
-      "text": {
-        "type": "string"
-      },
-      "textColor": {
-        "type": "string",
-        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-      },
-      "backgroundColor": {
-        "type": "string",
-        "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
-      },
-      "hoverBehavior": {
-        "type": "string",
-        "enum": ["darker", "lighter"]
-      }
-    },
-    "required": [
-      "name",
-      "url",
-      "fontAwesomeIcon",
-      "icon",
-      "color",
-      "text",
-      "textColor",
-      "backgroundColor",
-      "hoverBehavior"
-    ]
-  }
-}
-```
-
-### JSON Data Schema: projects.json
-
-```json
-{
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "category": { "type": "string" },
-      "name": { "type": "string" },
-      "url": { "type": "string", "format": "uri" },
-      "title": { "type": "string" },
-      "subtitle": { "type": "string" },
-      "image": { "type": "string" },
-      "alt-description": { "type": "string" },
-      "bullets": {
-        "type": "array",
-        "items": { "type": "string" }
-      }
-    },
-    "required": ["category", "name", "url", "title", "subtitle", "image", "alt-description", "bullets"],
-    "additionalProperties": false
-  }
-}
-```
-
-### Setting up the content files on Compute Engine:
-
-SSH into your compute engine, then create the target directory for the content files:
-
-```bash
-sudo mkdir -p /etc/personal-website/content-files
-```
-
-The p option creates any directorys inbetween that are not found.
-
-Upload the files to the remote instance:
-
-```bash
-gcloud compute scp <PATH_TO_LOCAL_FILE> <INSTANCE_NAME>:/etc/personal-website/content-files
-```
-
-Do this for each of the content files.
-
-And finally to complete the process let's restrict these files so that only the personal-website application can access these files. When setting up this application, be sure to target the user created to run the limited permissions required to run the application, in this example a `flask_app_service_acct` user has been created.
-
-Set the permissions on the directory:
-
-```bash
-"sudo chown flask_app_service_acct:flask_app_service_acct <REMOTE_INSTANCE_PATH> && sudo chmod 700 <REMOTE_INSTANCE_PATH>"
-```
-
-Set the environment variable to point to the JSON file path:
-
-```bash
-export PORTFOLIO_DATA_PATH=/etc/personal-website/portfolio_data.json
-export SOCIAL_DATA_PATH=/etc/personal-website/social_data.json
-export PROJECTS_DATA_PATH=/etc/personal-website/project_data.json
-```
-
-Optionally, add the above command to the user's .bashrc or .bash_profile file to set the variable automatically on login.
-
-Now your Flask application running on the Compute Engine instance will have access to the JSON data file via the PORTFOLIO_DATA_PATH environment variable. Remember to replace your-instance-name with the appropriate value.
 
 # Version 2 Design Proposal/Notes
 
-## Replace content files with private api service
+~~## Replace content files with private api service~~
 
-Implment an PI Integration for Private Content. This will allow for the content files to be managed separately by another private. By decoupling private content from the public-facing application, this can enhance security and version control for content files. Here are some notes on implementation.
+~~Implment an PI Integration for Private Content. This will allow for the content files to be managed separately by another private. By decoupling private content from the public-facing application, this can enhance security and version control for content files. Here are some notes on implementation.~~
 
-### Dedicated Private API Service:
-
-Design a separate Flask application to act as the Private API Service.
-Host this service in a private network or behind a firewall for added security.
-Handle authentication and authorization to restrict access to authorized users (public-facing app).
-
-### Secure Communication:
-
-Use encryption protocols (e.g., HTTPS) to ensure secure communication between the public-facing app and Private API Service. Have some experience using Let's Encrypt for this kind of stuff. Implement access controls and API keys for authorized requests.
-
-### Private Content Repository:
-
-Set up a private repository to store content files securely.
-Use version control to track changes, collaborate, and maintain data consistency.
-
-### API Documentation:
-
-Prepare detailed API documentation for the Private API Service to facilitate integration with the public-facing app.
-Include guidelines for handling private content requests and responses.
-
-### Design Considerations:
-
-#### Authentication Mechanism:
-
-Explore token-based authentication (e.g., JWT) to verify user access to private content.
-Additional research for OAuth 2.0 for handling third-party integrations if required.
-
-#### Private Network Configuration:
-
-Work with DevOps team to configure the private network securely.
-Implement VPN for remote access to the Private API Service during development and testing.
-
-#### Version Control Strategies:
-
-Adopt Git branching and merging strategies for content files version control.
-Use semantic versioning for content releases to ensure backward compatibility.
-
-#### Error Handling and Logging:
-
-Implement comprehensive error handling for API requests and responses.
-Set up logging mechanisms to monitor and troubleshoot issues.
-
-#### Tech Stack:
-
-Flask (Python) for both the public-facing app and Private API Service.
-GitLab: Try something different and show how code resources can be managed on different platforms and still work together. If for any reason, just to say I can do it xD
+Went with a sort of private CDN with signed URLs. Good learning experience, and I think does the job quite well.

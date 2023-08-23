@@ -8,6 +8,7 @@ location_env = environ.get("LOCATION_ENV", path.dirname(__file__))
 dotenv_path = path.join(f"{location_env}", f"{program_env}.env")
 load_dotenv(dotenv_path=dotenv_path)
 
+
 class Config:
     """Set Flask config variables."""
 
@@ -24,6 +25,8 @@ class Config:
     RECAPTCHA_PRIVATE_KEY = environ.get("RECAPTCHA_PRIVATE_KEY", "1234567890987654321")
     SENDGRID_API_KEY = environ.get("SENDGRID_API_KEY", "1234567890987654321")
     MAIL_DEFAULT_SENDER = environ.get("MAIL_DEFAULT_SENDER", "your_email@example.com")
+    BUCKET_NAME = environ.get("BUCKET_NAME", "I am bucket head man!")
+    KAGIS = environ.get("KAGIS", "I am the kangaroo!")
 
     # Conditionals
     # SERVER_NAME causes some issues during local development, but is required for
