@@ -6,4 +6,4 @@ ignore-paths=
 clear-cache-post-run=true
 
 [MESSAGES CONTROL]
-disable=line-too-long
+disable=line-too-long,fixme,too-many-arguments
