@@ -3,7 +3,6 @@ Module: sign_urls
 Description: Provides utility functions for generating signed URLs for assets stored in Google Cloud Storage.
 """
 from google.cloud import storage
-from google.auth import compute_engine
 
 def signed_url_generator(
     environment, logger, bucket, bucket_path_to_file, kagis, force_refresh=False
@@ -24,19 +23,17 @@ def signed_url_generator(
         # but was trying to follow some principles and the docs. Just store the key as a
         # secret and pass it to the sotrage client. This ACP or auto authentication
         # from the compute engine (mentioned in docs) is a giant pile of poo. And if
-        # there is a receipt to authenticate another way it isn't obvious and the docs 
+        # there is a receipt to authenticate another way it isn't obvious and the docs
         # are a little bit all over the place so it is espically hard to line up
-        # the documentaion aritcles so that they all represent good and correct 
-        # information when taking into consideration your use case, 
+        # the documentaion aritcles so that they all represent good and correct
+        # information when taking into consideration your use case,
         # source resource type/env/service account/destination resource type... etc
         storage_client = storage.Client.from_service_account_json(kagis)
-        credentials_info = storage_client._credentials.to_authorized_user_info()
-        logger.info(f"gcp authentication in DEVELOPMENT mode")
+        logger.info("gcp authentication in DEVELOPMENT mode")
 
     elif environment == "production":
-        credentials = compute_engine.Credentials()
         storage_client = storage.Client.from_service_account_json(kagis)
-        logger.info(f"gcp authentication in PRODUCTION mode")
+        logger.info("gcp authentication in PRODUCTION mode")
     else:
         logger.error(f"invalid environment: {environment}")
 
