@@ -28,14 +28,6 @@ class Config:
     BUCKET_NAME = environ.get("BUCKET_NAME", "I am bucket head man!")
     KAGIS = environ.get("KAGIS", "I am the kangaroo!")
 
-    # Conditionals
-    # SERVER_NAME causes some issues during local development, but is required for
-    # url_for() to work properly in production.
-    if ENVIRONMENT == "development":
-        SERVER_NAME = None
-    else:
-        SERVER_NAME = environ.get("SERVER_NAME", "localhost:12031")
-
     def __repr__(self) -> str:
         return f"<Config:\n  ENVIRONMENT: {self.ENVIRONMENT}\n  FLASK_APP: \
             {self.FLASK_APP}\n  DEBUG: {self.DEBUG}\n  SECRET_KEY: \
