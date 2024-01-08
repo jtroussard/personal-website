@@ -45,4 +45,4 @@ urllib3==1.26.16
 webencodings==0.5.1
 Werkzeug==2.3.7
 wrapt==1.15.0
-WTForms==3.0.1
+WTForms==3.1.2
